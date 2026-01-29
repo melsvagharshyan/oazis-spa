@@ -96,7 +96,7 @@ const recommendations = [
     name: "Александр",
     surname: null,
     stars: 5,
-    text: "Микаел — один из лучших мастеров, к которым я обращался. Чувствует тело, находит проблемные зоны. Результат после каждого визита.",
+    text: "Микаел — лучший мастер, к которому я обращался. Чувствует тело, находит проблемные зоны. Результат после каждого визита.",
   },
 ];
 
@@ -246,14 +246,14 @@ function App() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 sm:pb-28 lg:pt-28 lg:pb-36">
           <div className="max-w-2xl">
             <p className="text-gold-600 font-medium mb-2 sm:mb-3">
-              Массажный салон в центре города
+              Мастер Микаел • Массажный салон в центре города
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-800 leading-tight">
               Расслабление и <span className="text-gold-600">здоровье</span> в
               каждом прикосновении
             </h1>
             <p className="mt-4 sm:mt-6 text-stone-600 text-lg sm:text-xl max-w-xl">
-              Классический, расслабляющий и лечебный массаж от опытных мастеров.
+              Классический, расслабляющий и лечебный массаж от опытного мастера Микаела.
               Восстановите силы и снимите напряжение.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4">
@@ -267,7 +267,7 @@ function App() {
                 href="#услуги"
                 className="inline-flex items-center justify-center px-6 py-3.5 rounded-full border-2 border-gold-400 text-gold-700 font-medium hover:bg-gold-50 transition-colors"
               >
-                Наши услуги
+                Услуги
               </a>
             </div>
           </div>
@@ -279,7 +279,7 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800">
-              Наши услуги
+              Услуги Микаела
             </h2>
             <p className="mt-4 text-stone-600 text-lg">
               Разнообразные виды массажа для восстановления и релаксации
@@ -332,20 +332,20 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800">
-                О салоне «Оазис»
+                О Микаеле и салоне «Оазис»
               </h2>
               <p className="mt-6 text-stone-600 text-lg leading-relaxed">
-                Мы создали пространство, где каждый гость может отключиться от
-                суеты, восстановить силы и позаботиться о теле. Наши мастера
-                прошли обучение и используют только качественные масла и кремы.
+                Микаел создал пространство, где каждый гость может отключиться от
+                суеты, восстановить силы и позаботиться о теле. Он прошёл
+                обучение и использует только качественные масла и кремы.
               </p>
               <p className="mt-4 text-stone-600 text-lg leading-relaxed">
-                Уютные кабинеты, приглушённый свет и спокойная музыка — всё для
+                Уютный кабинет, приглушённый свет и спокойная музыка — всё для
                 вашего комфорта и глубокого расслабления.
               </p>
               <ul className="mt-8 space-y-3">
                 {[
-                  "Сертифицированные мастера",
+                  "Сертифицированный специалист",
                   "Натуральная косметика",
                   "Удобное расположение",
                   "Запись онлайн 24/7",
@@ -428,7 +428,7 @@ function App() {
             Запишитесь на приём
           </h2>
           <p className="mt-4 text-gold-100 text-lg">
-            Позвоните нам — мы подберём удобное время.
+            Позвоните Микаелу — он подберёт удобное время.
           </p>
           <p className="mt-6 text-xl sm:text-2xl font-semibold text-white">
             <a
@@ -456,7 +456,7 @@ function App() {
               Контакты
             </h2>
             <p className="mt-4 text-stone-600 text-lg">
-              Будем рады видеть вас в нашем салоне
+              Микаел будет рад видеть вас в салоне
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
