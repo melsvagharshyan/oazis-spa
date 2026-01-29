@@ -125,7 +125,7 @@ function App() {
     try {
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
-          title: "Оазис — Массажный салон",
+          title: "Оазис — ассажная студия",
           text: "Мастер Микаел. Массаж в центре города.",
           url: window.location.href,
           files: [file],
@@ -293,7 +293,7 @@ function App() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 sm:pb-28 lg:pt-28 lg:pb-36">
           <div className="max-w-2xl">
             <p className="text-gold-600 font-medium mb-2 sm:mb-3">
-              Мастер Микаел • Массажный салон в центре города
+              Мастер Микаел • Массажная студия
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-800 leading-tight">
               Расслабление и <span className="text-gold-600">здоровье</span> в
@@ -413,7 +413,7 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800">
-                О Микаеле и салоне «Оазис»
+                О Микаеле и студии «Оазис»
               </h2>
               <p className="mt-6 text-stone-600 text-lg leading-relaxed">
                 Микаел создал пространство, где каждый гость может отключиться от
@@ -577,7 +577,7 @@ function App() {
               Контакты
             </h2>
             <p className="mt-4 text-stone-600 text-lg">
-              Микаел будет рад видеть вас в салоне
+            Микаел будет рад видеть вас в студии
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -792,7 +792,7 @@ function App() {
                 Оазис
               </span>
               <p className="mt-2 text-sm text-stone-400">
-                Массажный салон. Расслабление и здоровье.
+                Массажная студия. Расслабление и здоровье.
               </p>
             </div>
             <div className="flex flex-wrap gap-6 items-center">
