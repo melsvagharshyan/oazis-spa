@@ -463,9 +463,49 @@ function App() {
               Прозрачные цены. Первый визит — скидка 10%.
             </p>
           </div>
+
+          <div className="mb-12 sm:mb-16">
+            <h3 className="text-xl font-semibold text-stone-800 mb-6">
+              Классический
+            </h3>
+            <div className="rounded-2xl border border-gold-200/60 bg-gold-50/30 overflow-hidden">
+              <ul className="divide-y divide-gold-200/50">
+                {[
+                  { name: "Все тело", price: "1 200 ₽" },
+                  { name: "Шейно-воротниковая зона", price: "400 ₽" },
+                  { name: "Спина", price: "400 ₽" },
+                  {
+                    name: "Спина + шейно-воротниковая зона",
+                    price: "600 ₽",
+                  },
+                  {
+                    name: "Спина + шейно-воротниковая зона + руки",
+                    price: "700 ₽",
+                  },
+                  {
+                    name: "Голова + шейно-воротниковая зона",
+                    price: "500 ₽",
+                  },
+                  { name: "Ноги + стопы", price: "600 ₽" },
+                ].map((item) => (
+                  <li
+                    key={item.name}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-4 px-5 sm:px-6 hover:bg-gold-50/50 transition-colors"
+                  >
+                    <span className="text-stone-800 font-medium">
+                      {item.name}
+                    </span>
+                    <span className="text-gold-700 font-bold text-lg shrink-0">
+                      {item.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "Классический массаж", time: "60 мин", price: "4 500 ₽" },
               {
                 name: "Расслабляющий массаж",
                 time: "90 мин",
