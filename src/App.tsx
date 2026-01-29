@@ -11,6 +11,7 @@ import {
   HiOutlineFaceSmile,
   HiOutlineChevronLeft,
   HiOutlineChevronRight,
+  HiOutlineShare,
   HiStar,
 } from "react-icons/hi2";
 import { SiTelegram } from "react-icons/si";
@@ -100,9 +101,27 @@ const recommendations = [
   },
 ];
 
+const QR_IMAGE = "/images/qrcode-1769698388902.png";
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [reviewIndex, setReviewIndex] = useState(0);
+  const [qrCopied, setQrCopied] = useState(false);
+
+  async function copyQrToClipboard() {
+    try {
+      const res = await fetch(QR_IMAGE);
+      const blob = await res.blob();
+      const type = blob.type || "image/png";
+      await navigator.clipboard.write([
+        new ClipboardItem({ [type]: blob }),
+      ]);
+      setQrCopied(true);
+      setTimeout(() => setQrCopied(false), 2000);
+    } catch (e) {
+      console.warn("Copy QR failed:", e);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-white text-stone-800">
@@ -541,6 +560,24 @@ function App() {
               >
                 @Oazis0033
               </a>
+            </div>
+          </div>
+          <div className="mt-12 sm:mt-16 flex flex-col items-center">
+            <p className="text-stone-600 font-medium mb-4">Поделиться сайтом</p>
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <img
+                src={QR_IMAGE}
+                alt="QR-код сайта"
+                className="w-32 h-32 sm:w-36 sm:h-36 rounded-xl border border-gold-200/60 bg-white p-1"
+              />
+              <button
+                type="button"
+                onClick={copyQrToClipboard}
+                className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-gold-500 text-white font-semibold hover:bg-gold-600 transition-colors active:scale-[0.98]"
+              >
+                <HiOutlineShare className="w-5 h-5 shrink-0" aria-hidden />
+                {qrCopied ? "Скопировано!" : "Скопировать QR-код"}
+              </button>
             </div>
           </div>
         </div>
