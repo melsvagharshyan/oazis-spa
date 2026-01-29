@@ -72,7 +72,7 @@ const recommendations = [
     name: "Дмитрий",
     surname: null,
     stars: 5,
-    text: "Хожу к Микаелу на спортивный массаж уже полгода. Отлично восстанавливает после тренировок, чувствую себя намного лучше. Спасибо!",
+    text: "Хожу к Микаелу на спортивный массаж. Отлично восстанавливает после тренировок, чувствую себя намного лучше. Спасибо!",
   },
   {
     name: "Анна",
@@ -84,7 +84,7 @@ const recommendations = [
     name: "Игорь",
     surname: null,
     stars: 5,
-    text: "Микаел снял хроническое напряжение в шее, с которым я жил годами. Теперь записываюсь регулярно. Специалист от Бога.",
+    text: "Микаел снял хроническое напряжение в шее. Специалист от Бога.",
   },
   {
     name: "Мария",
@@ -270,6 +270,40 @@ function App() {
                 Услуги
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro / О массаже */}
+      <section className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-gold-50/80 to-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800 text-center mb-10 sm:mb-12">
+            Массаж, после которого тело действительно отдыхает
+          </h2>
+          <div className="space-y-6 text-stone-600 text-lg leading-relaxed">
+            <p>
+              В нашем массажном пространстве вы можете по-настоящему расслабиться, восстановить силы и перезагрузиться. Мы работаем не по шаблону — каждый массаж подбирается индивидуально под ваше состояние, запрос и настроение.
+            </p>
+            <p>
+              Массаж помогает снять напряжение, убрать зажимы, улучшить кровообращение и вернуть лёгкость в теле. Уже после первого сеанса вы почувствуете спокойствие, расслабление и прилив энергии.
+            </p>
+            <p className="font-medium text-stone-700">Здесь вас ждёт:</p>
+            <ul className="space-y-3">
+              {[
+                'уютная и спокойная атмосфера',
+                'внимательное отношение к каждому клиенту',
+                'качественные техники массажа',
+                'забота о вашем теле и самочувствии',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-gold-500 shrink-0 mt-2" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p>
+              Позвольте себе паузу от стресса и суеты — ваше тело скажет спасибо.
+            </p>
           </div>
         </div>
       </section>
@@ -467,7 +501,7 @@ function App() {
               />
               <h3 className="mt-3 font-semibold text-stone-800">Адрес</h3>
               <p className="mt-1 text-stone-600">
-                г. Москва, ул. Примерная, д. 1
+                Тверецкий пр-з, 21
               </p>
             </div>
             <div className="text-center sm:text-left p-6 rounded-2xl bg-white border border-gold-200/60">
