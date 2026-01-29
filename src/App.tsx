@@ -126,7 +126,7 @@ function App() {
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
           title: "Оазис — ассажная студия",
-          text: "Мастер Микаел. Массаж в центре города.",
+          text: "Мастер Микаел.",
           url: window.location.href,
           files: [file],
         });
