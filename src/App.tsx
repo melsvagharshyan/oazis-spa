@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   HiOutlineMapPin,
   HiOutlinePhone,
@@ -9,21 +9,100 @@ import {
   HiOutlineBolt,
   HiOutlineStar,
   HiOutlineFaceSmile,
-} from 'react-icons/hi2';
-import { SiTelegram } from 'react-icons/si';
-import { GiPalmTree } from 'react-icons/gi';
+  HiOutlineChevronLeft,
+  HiOutlineChevronRight,
+  HiStar,
+} from "react-icons/hi2";
+import { SiTelegram } from "react-icons/si";
+import { GiPalmTree } from "react-icons/gi";
 
 const services = [
-  { title: 'Классический массаж', desc: 'Универсальная техника для снятия мышечного напряжения, улучшения кровообращения и общего тонуса.', Icon: HiOutlineSparkles },
-  { title: 'Расслабляющий массаж', desc: 'Мягкие прикосновения и ароматерапия помогут полностью расслабиться и снять стресс.', Icon: HiOutlineSun },
-  { title: 'Лечебный массаж', desc: 'Направленная работа с проблемными зонами: спина, шея, ноги. Помощь при болях и зажимах.', Icon: HiOutlineHeart },
-  { title: 'Спортивный массаж', desc: 'Подготовка мышц к нагрузкам и быстрое восстановление после тренировок.', Icon: HiOutlineBolt },
-  { title: 'Антицеллюлитный массаж', desc: 'Улучшение микроциркуляции и тонуса кожи, моделирование силуэта.', Icon: HiOutlineStar },
-  { title: 'Массаж головы и шеи', desc: 'Снятие головных болей напряжения, улучшение концентрации и сна.', Icon: HiOutlineFaceSmile },
+  {
+    title: "Классический массаж",
+    desc: "Универсальная техника для снятия мышечного напряжения, улучшения кровообращения и общего тонуса.",
+    Icon: HiOutlineSparkles,
+    image:
+      "https://images.pexels.com/photos/6560304/pexels-photo-6560304.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    title: "Расслабляющий массаж",
+    desc: "Мягкие прикосновения и ароматерапия помогут полностью расслабиться и снять стресс.",
+    Icon: HiOutlineSun,
+    image:
+      "https://images.pexels.com/photos/6629610/pexels-photo-6629610.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    title: "Лечебный массаж",
+    desc: "Направленная работа с проблемными зонами: спина, шея, ноги. Помощь при болях и зажимах.",
+    Icon: HiOutlineHeart,
+    image:
+      "https://images.pexels.com/photos/6560302/pexels-photo-6560302.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    title: "Спортивный массаж",
+    desc: "Подготовка мышц к нагрузкам и быстрое восстановление после тренировок.",
+    Icon: HiOutlineBolt,
+    image:
+      "https://images.pexels.com/photos/5794017/pexels-photo-5794017.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    title: "Антицеллюлитный массаж",
+    desc: "Улучшение микроциркуляции и тонуса кожи, моделирование силуэта.",
+    Icon: HiOutlineStar,
+    image:
+      "https://images.pexels.com/photos/6628585/pexels-photo-6628585.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+  {
+    title: "Массаж головы и шеи",
+    desc: "Снятие головных болей напряжения, улучшение концентрации и сна.",
+    Icon: HiOutlineFaceSmile,
+    image:
+      "https://images.pexels.com/photos/6560296/pexels-photo-6560296.jpeg?auto=compress&cs=tinysrgb&w=800",
+  },
+];
+
+const recommendations = [
+  {
+    name: "Елена",
+    surname: "Соколова",
+    stars: 5,
+    text: "Микаел — настоящий профессионал. Руки волшебные, после сеанса спина как новая. Рекомендую всем, кто мучается с зажимами и усталостью.",
+  },
+  {
+    name: "Дмитрий",
+    surname: null,
+    stars: 5,
+    text: "Хожу к Микаелу на спортивный массаж уже полгода. Отлично восстанавливает после тренировок, чувствую себя намного лучше. Спасибо!",
+  },
+  {
+    name: "Анна",
+    surname: "Козлова",
+    stars: 5,
+    text: "Очень благодарна Микаелу за расслабляющий массаж. Атмосфера спокойная, техника мягкая и в то же время эффективная. Обязательно вернусь.",
+  },
+  {
+    name: "Игорь",
+    surname: null,
+    stars: 5,
+    text: "Микаел снял хроническое напряжение в шее, с которым я жил годами. Теперь записываюсь регулярно. Специалист от Бога.",
+  },
+  {
+    name: "Мария",
+    surname: "Волкова",
+    stars: 5,
+    text: "Делала у Микаела массаж головы и шеи — невероятно расслабляет, голова перестала болеть. Мастер своего дела, всем советую.",
+  },
+  {
+    name: "Александр",
+    surname: null,
+    stars: 5,
+    text: "Микаел — один из лучших мастеров, к которым я обращался. Чувствует тело, находит проблемные зоны. Результат после каждого визита.",
+  },
 ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [reviewIndex, setReviewIndex] = useState(0);
 
   return (
     <div className="min-h-screen bg-white text-stone-800">
@@ -31,21 +110,45 @@ function App() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gold-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="#" className="flex items-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gold-700">
-              <GiPalmTree className="w-6 h-6 md:w-7 md:h-7 shrink-0" aria-hidden />
+            <a
+              href="#"
+              className="flex items-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gold-700"
+            >
+              <GiPalmTree
+                className="w-6 h-6 md:w-7 md:h-7 shrink-0"
+                aria-hidden
+              />
               Оазис
             </a>
             <nav className="hidden md:flex items-center gap-8">
-              <a href="#услуги" className="text-stone-600 hover:text-gold-600 transition-colors">
+              <a
+                href="#услуги"
+                className="text-stone-600 hover:text-gold-600 transition-colors"
+              >
                 Услуги
               </a>
-              <a href="#о-нас" className="text-stone-600 hover:text-gold-600 transition-colors">
+              <a
+                href="#о-нас"
+                className="text-stone-600 hover:text-gold-600 transition-colors"
+              >
                 О нас
               </a>
-              <a href="#цены" className="text-stone-600 hover:text-gold-600 transition-colors">
+              <a
+                href="#цены"
+                className="text-stone-600 hover:text-gold-600 transition-colors"
+              >
                 Цены
               </a>
-              <a href="#контакты" className="text-stone-600 hover:text-gold-600 transition-colors">
+              <a
+                href="#отзывы"
+                className="text-stone-600 hover:text-gold-600 transition-colors"
+              >
+                Отзывы
+              </a>
+              <a
+                href="#контакты"
+                className="text-stone-600 hover:text-gold-600 transition-colors"
+              >
                 Контакты
               </a>
               <a
@@ -61,11 +164,26 @@ function App() {
               className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-gold-100 transition-colors"
               aria-label="Меню"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 {menuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -74,16 +192,39 @@ function App() {
         {menuOpen && (
           <div className="md:hidden border-t border-gold-200/60 bg-white">
             <div className="px-4 py-4 flex flex-col gap-2">
-              <a href="#услуги" className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600" onClick={() => setMenuOpen(false)}>
+              <a
+                href="#услуги"
+                className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 Услуги
               </a>
-              <a href="#о-нас" className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600" onClick={() => setMenuOpen(false)}>
+              <a
+                href="#о-нас"
+                className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 О нас
               </a>
-              <a href="#цены" className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600" onClick={() => setMenuOpen(false)}>
+              <a
+                href="#цены"
+                className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 Цены
               </a>
-              <a href="#контакты" className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600" onClick={() => setMenuOpen(false)}>
+              <a
+                href="#отзывы"
+                className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600"
+                onClick={() => setMenuOpen(false)}
+              >
+                Отзывы
+              </a>
+              <a
+                href="#контакты"
+                className="py-3 px-4 rounded-lg hover:bg-gold-50 text-stone-600"
+                onClick={() => setMenuOpen(false)}
+              >
                 Контакты
               </a>
               <a
@@ -104,14 +245,15 @@ function App() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gold-200/20 via-transparent to-transparent" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 sm:pb-28 lg:pt-28 lg:pb-36">
           <div className="max-w-2xl">
-            <p className="text-gold-600 font-medium mb-2 sm:mb-3">Массажный салон в центре города</p>
+            <p className="text-gold-600 font-medium mb-2 sm:mb-3">
+              Массажный салон в центре города
+            </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-800 leading-tight">
-              Расслабление и{' '}
-              <span className="text-gold-600">здоровье</span>
-              {' '}в каждом прикосновении
+              Расслабление и <span className="text-gold-600">здоровье</span> в
+              каждом прикосновении
             </h1>
             <p className="mt-4 sm:mt-6 text-stone-600 text-lg sm:text-xl max-w-xl">
-              Классический, расслабляющий и лечебный массаж от опытных мастеров. 
+              Классический, расслабляющий и лечебный массаж от опытных мастеров.
               Восстановите силы и снимите напряжение.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4">
@@ -149,13 +291,31 @@ function App() {
               return (
                 <div
                   key={s.title}
-                  className="group p-6 sm:p-8 rounded-2xl bg-gold-50/50 border border-gold-200/50 hover:border-gold-300 hover:shadow-lg hover:shadow-gold-200/20 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-2xl border border-gold-200/50 hover:border-gold-300 hover:shadow-xl hover:shadow-gold-200/25 transition-all duration-300 min-h-[260px] sm:min-h-[280px] flex flex-col"
                 >
-                  <Icon className="w-8 h-8 text-gold-600" aria-hidden />
-                  <h3 className="mt-4 text-xl font-semibold text-stone-800 group-hover:text-gold-700 transition-colors">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-stone-600">{s.desc}</p>
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${s.image})` }}
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-stone-900/92 via-stone-900/40 to-transparent"
+                    aria-hidden
+                  />
+                  <div className="relative flex flex-1 flex-col justify-end p-6 sm:p-8">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Icon
+                        className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 text-gold-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
+                        aria-hidden
+                      />
+                      <h3 className="text-xl sm:text-2xl font-semibold text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] group-hover:text-gold-200 transition-colors leading-tight">
+                        {s.title}
+                      </h3>
+                    </div>
+                    <p className="text-stone-200 text-sm sm:text-base leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                      {s.desc}
+                    </p>
+                  </div>
                 </div>
               );
             })}
@@ -164,7 +324,10 @@ function App() {
       </section>
 
       {/* About */}
-      <section id="о-нас" className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-gold-50/80 to-white">
+      <section
+        id="о-нас"
+        className="py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-gold-50/80 to-white"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -172,17 +335,25 @@ function App() {
                 О салоне «Оазис»
               </h2>
               <p className="mt-6 text-stone-600 text-lg leading-relaxed">
-                Мы создали пространство, где каждый гость может отключиться от суеты, 
-                восстановить силы и позаботиться о теле. Наши мастера прошли обучение 
-                и используют только качественные масла и кремы.
+                Мы создали пространство, где каждый гость может отключиться от
+                суеты, восстановить силы и позаботиться о теле. Наши мастера
+                прошли обучение и используют только качественные масла и кремы.
               </p>
               <p className="mt-4 text-stone-600 text-lg leading-relaxed">
-                Уютные кабинеты, приглушённый свет и спокойная музыка — всё для вашего 
-                комфорта и глубокого расслабления.
+                Уютные кабинеты, приглушённый свет и спокойная музыка — всё для
+                вашего комфорта и глубокого расслабления.
               </p>
               <ul className="mt-8 space-y-3">
-                {['Сертифицированные мастера', 'Натуральная косметика', 'Удобное расположение', 'Запись онлайн 24/7'].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-stone-700">
+                {[
+                  "Сертифицированные мастера",
+                  "Натуральная косметика",
+                  "Удобное расположение",
+                  "Запись онлайн 24/7",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-stone-700"
+                  >
                     <span className="w-2 h-2 rounded-full bg-gold-500 shrink-0" />
                     {item}
                   </li>
@@ -213,12 +384,24 @@ function App() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'Классический массаж', time: '60 мин', price: '4 500 ₽' },
-              { name: 'Расслабляющий массаж', time: '90 мин', price: '6 500 ₽' },
-              { name: 'Лечебный массаж (спина)', time: '45 мин', price: '3 800 ₽' },
-              { name: 'Спортивный массаж', time: '60 мин', price: '5 200 ₽' },
-              { name: 'Массаж головы и шеи', time: '30 мин', price: '2 500 ₽' },
-              { name: 'Антицеллюлитный массаж', time: '60 мин', price: '5 000 ₽' },
+              { name: "Классический массаж", time: "60 мин", price: "4 500 ₽" },
+              {
+                name: "Расслабляющий массаж",
+                time: "90 мин",
+                price: "6 500 ₽",
+              },
+              {
+                name: "Лечебный массаж (спина)",
+                time: "45 мин",
+                price: "3 800 ₽",
+              },
+              { name: "Спортивный массаж", time: "60 мин", price: "5 200 ₽" },
+              { name: "Массаж головы и шеи", time: "30 мин", price: "2 500 ₽" },
+              {
+                name: "Антицеллюлитный массаж",
+                time: "60 мин",
+                price: "5 000 ₽",
+              },
             ].map((p) => (
               <div
                 key={p.name}
@@ -226,7 +409,9 @@ function App() {
               >
                 <h3 className="font-semibold text-stone-800">{p.name}</h3>
                 <p className="mt-1 text-stone-500 text-sm">{p.time}</p>
-                <p className="mt-3 text-xl font-bold text-gold-700">{p.price}</p>
+                <p className="mt-3 text-xl font-bold text-gold-700">
+                  {p.price}
+                </p>
               </div>
             ))}
           </div>
@@ -234,7 +419,10 @@ function App() {
       </section>
 
       {/* CTA / Booking */}
-      <section id="запись" className="py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gold-500 to-gold-700">
+      <section
+        id="запись"
+        className="py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gold-500 to-gold-700"
+      >
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
             Запишитесь на приём
@@ -243,7 +431,10 @@ function App() {
             Позвоните нам — мы подберём удобное время.
           </p>
           <p className="mt-6 text-xl sm:text-2xl font-semibold text-white">
-            <a href="tel:+79612667666" className="hover:text-gold-100 transition-colors">
+            <a
+              href="tel:+79612667666"
+              className="hover:text-gold-100 transition-colors"
+            >
               +7 (961) 266-76-66
             </a>
           </p>
@@ -270,29 +461,180 @@ function App() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center sm:text-left p-6 rounded-2xl bg-white border border-gold-200/60">
-              <HiOutlineMapPin className="w-8 h-8 text-gold-600 mx-auto sm:mx-0" aria-hidden />
+              <HiOutlineMapPin
+                className="w-8 h-8 text-gold-600 mx-auto sm:mx-0"
+                aria-hidden
+              />
               <h3 className="mt-3 font-semibold text-stone-800">Адрес</h3>
-              <p className="mt-1 text-stone-600">г. Москва, ул. Примерная, д. 1</p>
+              <p className="mt-1 text-stone-600">
+                г. Москва, ул. Примерная, д. 1
+              </p>
             </div>
             <div className="text-center sm:text-left p-6 rounded-2xl bg-white border border-gold-200/60">
-              <HiOutlinePhone className="w-8 h-8 text-gold-600 mx-auto sm:mx-0" aria-hidden />
+              <HiOutlinePhone
+                className="w-8 h-8 text-gold-600 mx-auto sm:mx-0"
+                aria-hidden
+              />
               <h3 className="mt-3 font-semibold text-stone-800">Телефон</h3>
-              <a href="tel:+79612667666" className="mt-1 text-gold-600 hover:text-gold-700 font-medium">
+              <a
+                href="tel:+79612667666"
+                className="mt-1 text-gold-600 hover:text-gold-700 font-medium"
+              >
                 +7 (961) 266-76-66
               </a>
             </div>
             <div className="text-center sm:text-left p-6 rounded-2xl bg-white border border-gold-200/60">
-              <HiOutlineClock className="w-8 h-8 text-gold-600 mx-auto sm:mx-0" aria-hidden />
-              <h3 className="mt-3 font-semibold text-stone-800">Режим работы</h3>
+              <HiOutlineClock
+                className="w-8 h-8 text-gold-600 mx-auto sm:mx-0"
+                aria-hidden
+              />
+              <h3 className="mt-3 font-semibold text-stone-800">
+                Режим работы
+              </h3>
               <p className="mt-1 text-stone-600">Пн–Вс: 10:00 – 22:00</p>
             </div>
             <div className="text-center sm:text-left p-6 rounded-2xl bg-white border border-gold-200/60">
-              <SiTelegram className="w-8 h-8 text-gold-600 mx-auto sm:mx-0" aria-hidden />
+              <SiTelegram
+                className="w-8 h-8 text-gold-600 mx-auto sm:mx-0"
+                aria-hidden
+              />
               <h3 className="mt-3 font-semibold text-stone-800">Telegram</h3>
-              <a href="https://t.me/Oazis0033" target="_blank" rel="noopener noreferrer" className="mt-1 text-gold-600 hover:text-gold-700 font-medium">
+              <a
+                href="https://t.me/Oazis0033"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 text-gold-600 hover:text-gold-700 font-medium"
+              >
                 @Oazis0033
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Recommendations slider */}
+      <section id="отзывы" className="py-8 sm:py-14 lg:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6 sm:mb-10">
+            <h2 className="text-xl sm:text-3xl font-bold text-stone-800">
+              Отзывы клиентов
+            </h2>
+            <p className="mt-1.5 sm:mt-2 text-stone-600 text-sm sm:text-base">
+              О специалисте Микаеле
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:gap-6">
+            <button
+              type="button"
+              onClick={() =>
+                setReviewIndex((i) =>
+                  i > 0 ? i - 1 : recommendations.length - 1,
+                )
+              }
+              className="hidden sm:flex shrink-0 self-center w-12 h-12 rounded-full bg-white border border-gold-200/60 shadow-lg text-gold-600 hover:bg-gold-50 hover:border-gold-300 transition-colors items-center justify-center"
+              aria-label="Предыдущий отзыв"
+            >
+              <HiOutlineChevronLeft className="w-6 h-6" />
+            </button>
+
+            <div className="flex-1 min-w-0 overflow-hidden rounded-2xl">
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{
+                  width: `${recommendations.length * 100}%`,
+                  transform: `translateX(-${reviewIndex * (100 / recommendations.length)}%)`,
+                }}
+              >
+                {recommendations.map((r, i) => (
+                  <div
+                    key={i}
+                    className="shrink-0 px-4 py-5 sm:px-8 sm:py-8 bg-gold-50/50 border border-gold-200/50 min-h-[200px] sm:min-h-0 flex flex-col"
+                    style={{ width: `${100 / recommendations.length}%` }}
+                  >
+                    <div
+                      className="flex gap-1 mb-3 sm:mb-4"
+                      aria-label={`Оценка: ${r.stars} из 5`}
+                    >
+                      {Array.from({ length: r.stars }).map((_, j) => (
+                        <HiStar
+                          key={j}
+                          className="w-5 h-5 text-gold-500 shrink-0"
+                          aria-hidden
+                        />
+                      ))}
+                    </div>
+                    <p className="text-stone-700 text-[15px] sm:text-base leading-relaxed flex-1">
+                      {r.text}
+                    </p>
+                    <p className="mt-3 sm:mt-4 font-semibold text-stone-800 text-[15px] sm:text-base">
+                      {r.name}
+                      {r.surname ? ` ${r.surname}` : ""}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() =>
+                setReviewIndex((i) =>
+                  i < recommendations.length - 1 ? i + 1 : 0,
+                )
+              }
+              className="hidden sm:flex shrink-0 self-center w-12 h-12 rounded-full bg-white border border-gold-200/60 shadow-lg text-gold-600 hover:bg-gold-50 hover:border-gold-300 transition-colors items-center justify-center"
+              aria-label="Следующий отзыв"
+            >
+              <HiOutlineChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="flex sm:hidden items-center justify-center gap-6 mt-4">
+            <button
+              type="button"
+              onClick={() =>
+                setReviewIndex((i) =>
+                  i > 0 ? i - 1 : recommendations.length - 1,
+                )
+              }
+              className="min-h-[44px] min-w-[44px] px-5 rounded-full bg-white border border-gold-200/60 shadow text-gold-600 active:bg-gold-50 flex items-center justify-center gap-2 font-medium text-[15px]"
+              aria-label="Предыдущий отзыв"
+            >
+              <HiOutlineChevronLeft className="w-5 h-5" />
+              Назад
+            </button>
+            <span className="text-stone-500 text-sm tabular-nums"></span>
+            <button
+              type="button"
+              onClick={() =>
+                setReviewIndex((i) =>
+                  i < recommendations.length - 1 ? i + 1 : 0,
+                )
+              }
+              className="min-h-[44px] min-w-[44px] px-5 rounded-full bg-white border border-gold-200/60 shadow text-gold-600 active:bg-gold-50 flex items-center justify-center gap-2 font-medium text-[15px]"
+              aria-label="Следующий отзыв"
+            >
+              Вперёд
+              <HiOutlineChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-2.5 sm:gap-2 mt-4 sm:mt-6">
+            {recommendations.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setReviewIndex(i)}
+                className={`rounded-full transition-colors shrink-0 ${
+                  i === reviewIndex
+                    ? "bg-gold-500 scale-125"
+                    : "bg-gold-200 hover:bg-gold-300 active:bg-gold-300"
+                } w-3 h-3 sm:w-2.5 sm:h-2.5`}
+                aria-label={`Отзыв ${i + 1} из ${recommendations.length}`}
+                aria-current={i === reviewIndex ? "true" : undefined}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -311,11 +653,43 @@ function App() {
               </p>
             </div>
             <div className="flex flex-wrap gap-6 items-center">
-              <a href="#услуги" className="text-sm hover:text-gold-400 transition-colors">Услуги</a>
-              <a href="#о-нас" className="text-sm hover:text-gold-400 transition-colors">О нас</a>
-              <a href="#цены" className="text-sm hover:text-gold-400 transition-colors">Цены</a>
-              <a href="#контакты" className="text-sm hover:text-gold-400 transition-colors">Контакты</a>
-              <a href="https://t.me/Oazis0033" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-gold-400 transition-colors inline-flex items-center gap-1.5" aria-label="Telegram">
+              <a
+                href="#услуги"
+                className="text-sm hover:text-gold-400 transition-colors"
+              >
+                Услуги
+              </a>
+              <a
+                href="#о-нас"
+                className="text-sm hover:text-gold-400 transition-colors"
+              >
+                О нас
+              </a>
+              <a
+                href="#цены"
+                className="text-sm hover:text-gold-400 transition-colors"
+              >
+                Цены
+              </a>
+              <a
+                href="#отзывы"
+                className="text-sm hover:text-gold-400 transition-colors"
+              >
+                Отзывы
+              </a>
+              <a
+                href="#контакты"
+                className="text-sm hover:text-gold-400 transition-colors"
+              >
+                Контакты
+              </a>
+              <a
+                href="https://t.me/Oazis0033"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm hover:text-gold-400 transition-colors inline-flex items-center gap-1.5"
+                aria-label="Telegram"
+              >
                 <SiTelegram className="w-5 h-5" /> Telegram
               </a>
             </div>
@@ -333,7 +707,10 @@ function App() {
         title="Записаться на массаж"
         aria-label="Записаться на массаж"
       >
-        <HiOutlinePhone className="w-6 h-6 sm:w-7 sm:h-7 shrink-0" aria-hidden />
+        <HiOutlinePhone
+          className="w-6 h-6 sm:w-7 sm:h-7 shrink-0"
+          aria-hidden
+        />
       </a>
     </div>
   );
