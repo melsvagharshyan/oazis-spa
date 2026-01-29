@@ -1,6 +1,26 @@
 import { useState } from 'react';
-import { HiOutlineMapPin, HiOutlinePhone, HiOutlineClock } from 'react-icons/hi2';
+import {
+  HiOutlineMapPin,
+  HiOutlinePhone,
+  HiOutlineClock,
+  HiOutlineSparkles,
+  HiOutlineSun,
+  HiOutlineHeart,
+  HiOutlineBolt,
+  HiOutlineStar,
+  HiOutlineFaceSmile,
+} from 'react-icons/hi2';
 import { SiTelegram } from 'react-icons/si';
+import { GiPalmTree } from 'react-icons/gi';
+
+const services = [
+  { title: 'Классический массаж', desc: 'Универсальная техника для снятия мышечного напряжения, улучшения кровообращения и общего тонуса.', Icon: HiOutlineSparkles },
+  { title: 'Расслабляющий массаж', desc: 'Мягкие прикосновения и ароматерапия помогут полностью расслабиться и снять стресс.', Icon: HiOutlineSun },
+  { title: 'Лечебный массаж', desc: 'Направленная работа с проблемными зонами: спина, шея, ноги. Помощь при болях и зажимах.', Icon: HiOutlineHeart },
+  { title: 'Спортивный массаж', desc: 'Подготовка мышц к нагрузкам и быстрое восстановление после тренировок.', Icon: HiOutlineBolt },
+  { title: 'Антицеллюлитный массаж', desc: 'Улучшение микроциркуляции и тонуса кожи, моделирование силуэта.', Icon: HiOutlineStar },
+  { title: 'Массаж головы и шеи', desc: 'Снятие головных болей напряжения, улучшение концентрации и сна.', Icon: HiOutlineFaceSmile },
+];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +31,8 @@ function App() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gold-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="#" className="text-xl md:text-2xl font-semibold tracking-tight text-gold-700">
+            <a href="#" className="flex items-center gap-2 text-xl md:text-2xl font-semibold tracking-tight text-gold-700">
+              <GiPalmTree className="w-6 h-6 md:w-7 md:h-7 shrink-0" aria-hidden />
               Оазис
             </a>
             <nav className="hidden md:flex items-center gap-8">
@@ -123,25 +144,21 @@ function App() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              { title: 'Классический массаж', desc: 'Универсальная техника для снятия мышечного напряжения, улучшения кровообращения и общего тонуса.', icon: '✨' },
-              { title: 'Расслабляющий массаж', desc: 'Мягкие прикосновения и ароматерапия помогут полностью расслабиться и снять стресс.', icon: '🪷' },
-              { title: 'Лечебный массаж', desc: 'Направленная работа с проблемными зонами: спина, шея, ноги. Помощь при болях и зажимах.', icon: '🌿' },
-              { title: 'Спортивный массаж', desc: 'Подготовка мышц к нагрузкам и быстрое восстановление после тренировок.', icon: '💪' },
-              { title: 'Антицеллюлитный массаж', desc: 'Улучшение микроциркуляции и тонуса кожи, моделирование силуэта.', icon: '✨' },
-              { title: 'Массаж головы и шеи', desc: 'Снятие головных болей напряжения, улучшение концентрации и сна.', icon: '🧘' },
-            ].map((s) => (
-              <div
-                key={s.title}
-                className="group p-6 sm:p-8 rounded-2xl bg-gold-50/50 border border-gold-200/50 hover:border-gold-300 hover:shadow-lg hover:shadow-gold-200/20 transition-all duration-300"
-              >
-                <span className="text-3xl" aria-hidden>{s.icon}</span>
-                <h3 className="mt-4 text-xl font-semibold text-stone-800 group-hover:text-gold-700 transition-colors">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-stone-600">{s.desc}</p>
-              </div>
-            ))}
+            {services.map((s) => {
+              const Icon = s.Icon;
+              return (
+                <div
+                  key={s.title}
+                  className="group p-6 sm:p-8 rounded-2xl bg-gold-50/50 border border-gold-200/50 hover:border-gold-300 hover:shadow-lg hover:shadow-gold-200/20 transition-all duration-300"
+                >
+                  <Icon className="w-8 h-8 text-gold-600" aria-hidden />
+                  <h3 className="mt-4 text-xl font-semibold text-stone-800 group-hover:text-gold-700 transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-stone-600">{s.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -223,21 +240,20 @@ function App() {
             Запишитесь на приём
           </h2>
           <p className="mt-4 text-gold-100 text-lg">
-            Оставьте заявку — мы перезвоним и подберём удобное время.
+            Позвоните нам — мы подберём удобное время.
           </p>
-          <form className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="tel"
-              placeholder="+7 (___) ___-__-__"
-              className="flex-1 min-h-[48px] text-base px-4 py-3.5 rounded-xl bg-white/95 text-stone-800 placeholder-stone-400 border-0 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gold-600"
-            />
-            <button
-              type="submit"
-              className="min-h-[48px] px-6 py-3.5 rounded-xl bg-white text-gold-700 font-semibold hover:bg-gold-50 transition-colors active:scale-[0.98]"
-            >
-              Отправить
-            </button>
-          </form>
+          <p className="mt-6 text-xl sm:text-2xl font-semibold text-white">
+            <a href="tel:+79612667666" className="hover:text-gold-100 transition-colors">
+              +7 (961) 266-76-66
+            </a>
+          </p>
+          <a
+            href="tel:+79612667666"
+            className="mt-6 inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3.5 rounded-xl bg-white text-gold-700 font-semibold hover:bg-gold-50 transition-colors active:scale-[0.98]"
+          >
+            <HiOutlinePhone className="w-5 h-5" />
+            Позвонить
+          </a>
         </div>
       </section>
 
@@ -286,7 +302,10 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <span className="text-xl font-semibold text-gold-400">Оазис</span>
+              <span className="inline-flex items-center gap-2 text-xl font-semibold text-gold-400">
+                <GiPalmTree className="w-5 h-5 shrink-0" aria-hidden />
+                Оазис
+              </span>
               <p className="mt-2 text-sm text-stone-400">
                 Массажный салон. Расслабление и здоровье.
               </p>
@@ -306,6 +325,16 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Fixed bottom-right CTA — запись на массаж */}
+      <a
+        href="#запись"
+        className="fixed z-40 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gold-600 text-white shadow-lg animate-cta-pulse hover:bg-gold-700 transition-colors bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-[max(1.5rem,env(safe-area-inset-right))]"
+        title="Записаться на массаж"
+        aria-label="Записаться на массаж"
+      >
+        <HiOutlinePhone className="w-6 h-6 sm:w-7 sm:h-7 shrink-0" aria-hidden />
+      </a>
     </div>
   );
 }

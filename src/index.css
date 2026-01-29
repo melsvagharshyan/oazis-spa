@@ -36,3 +36,11 @@ html {
     touch-action: manipulation;
   }
 }
+
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 4px 14px 0 rgba(198, 147, 54, 0.35); }
+  50% { box-shadow: 0 4px 24px 6px rgba(198, 147, 54, 0.5); }
+}
+.animate-cta-pulse {
+  animation: cta-pulse 2s ease-in-out infinite;
+}
