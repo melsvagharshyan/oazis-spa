@@ -471,30 +471,40 @@ function App() {
             <div className="rounded-2xl border border-gold-200/60 bg-gold-50/30 overflow-hidden">
               <ul className="divide-y divide-gold-200/50">
                 {[
-                  { name: "Все тело", price: "1 200 ₽" },
-                  { name: "Шейно-воротниковая зона", price: "400 ₽" },
-                  { name: "Спина", price: "400 ₽" },
+                  { name: "Все тело", price: "2 200 ₽", time: "50 мин" },
+                  {
+                    name: "Шейно-воротниковая зона",
+                    price: "500 ₽",
+                    time: "20 мин",
+                  },
+                  { name: "Спина", price: "1 000 ₽", time: "30 мин" },
                   {
                     name: "Спина + шейно-воротниковая зона",
-                    price: "600 ₽",
+                    price: "1 300 ₽",
+                    time: "40 мин",
                   },
                   {
                     name: "Спина + шейно-воротниковая зона + руки",
-                    price: "700 ₽",
+                    price: "1 600 ₽",
+                    time: "50 мин",
                   },
                   {
                     name: "Голова + шейно-воротниковая зона",
-                    price: "500 ₽",
+                    price: "800 ₽",
+                    time: "25 мин",
                   },
-                  { name: "Ноги + стопы", price: "600 ₽" },
+                  { name: "Ноги + стопы", price: "1 000 ₽", time: "30 мин" },
                 ].map((item) => (
                   <li
                     key={item.name}
                     className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 py-4 px-5 sm:px-6 hover:bg-gold-50/50 transition-colors"
                   >
-                    <span className="text-stone-800 font-medium">
-                      {item.name}
-                    </span>
+                    <div>
+                      <span className="text-stone-800 font-medium block">
+                        {item.name}
+                      </span>
+                      <span className="text-stone-500 text-sm">{item.time}</span>
+                    </div>
                     <span className="text-gold-700 font-bold text-lg shrink-0">
                       {item.price}
                     </span>
@@ -507,21 +517,25 @@ function App() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                name: "Расслабляющий массаж",
-                time: "90 мин",
-                price: "6 500 ₽",
+                name: "Расслабляющий массаж (всё тело)",
+                time: "50 мин",
+                price: "1 700 ₽",
               },
               {
-                name: "Лечебный массаж (спина)",
-                time: "45 мин",
-                price: "3 800 ₽",
+                name: "Лечебный массаж (всё тело)",
+                time: "50 мин",
+                price: "2 000 ₽",
               },
-              { name: "Спортивный массаж", time: "60 мин", price: "5 200 ₽" },
+              {
+                name: "Спортивный массаж (более жёсткий, всё тело)",
+                time: "50 мин",
+                price: "2 500 ₽",
+              },
               { name: "Массаж головы и шеи", time: "30 мин", price: "2 500 ₽" },
               {
-                name: "Антицеллюлитный массаж",
-                time: "60 мин",
-                price: "5 000 ₽",
+                name: "Антицеллюлитный массаж (спина, ноги)",
+                time: "45 мин",
+                price: "2 500 ₽",
               },
             ].map((p) => (
               <div
